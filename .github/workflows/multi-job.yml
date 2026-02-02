@@ -1,0 +1,71 @@
+name: Multi-Job Workflow
+
+# This workflow demonstrates multiple jobs and job dependencies
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Job
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Simulate build process
+      run: |
+        echo "🔨 Building the project..."
+        sleep 2
+        echo "✅ Build completed!"
+        
+    - name: Save build artifact
+      run: |
+        echo "This is a build artifact" > build-output.txt
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifact
+        path: build-output.txt
+        
+  test:
+    name: Test Job
+    runs-on: ubuntu-latest
+    needs: build  # This job runs after 'build' completes
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build-artifact
+        
+    - name: Run tests
+      run: |
+        echo "🧪 Running tests..."
+        sleep 2
+        echo "✅ All tests passed!"
+        
+    - name: Display artifact
+      run: cat build-output.txt
+      
+  deploy:
+    name: Deploy Job
+    runs-on: ubuntu-latest
+    needs: [build, test]  # This job runs after both 'build' and 'test' complete
+    if: github.event_name == 'push'  # Only deploy on push events
+    
+    steps:
+    - name: Simulate deployment
+      run: |
+        echo "🚀 Deploying application..."
+        sleep 2
+        echo "✅ Deployment successful!"
