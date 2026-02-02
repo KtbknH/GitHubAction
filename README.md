@@ -9,6 +9,7 @@ This repository is a course exercise to learn and practice GitHub Actions. It co
 ### 1. Hello World Workflow (`.github/workflows/hello-world.yml`)
 A simple workflow that introduces basic GitHub Actions concepts:
 - **Triggers**: Runs on push to main, pull requests, and manual dispatch
+- **Security**: Uses explicit permissions (contents: read) following the principle of least privilege
 - **Features**:
   - Code checkout
   - Running shell commands
@@ -17,6 +18,7 @@ A simple workflow that introduces basic GitHub Actions concepts:
 
 ### 2. Multi-Job Workflow (`.github/workflows/multi-job.yml`)
 A more advanced workflow demonstrating multiple jobs and dependencies:
+- **Security**: Uses explicit permissions (contents: read, actions: read)
 - **Jobs**:
   - **Build**: Simulates a build process and creates artifacts
   - **Test**: Runs after build, downloads artifacts, and simulates testing
@@ -33,6 +35,7 @@ A more advanced workflow demonstrating multiple jobs and dependencies:
 - Managing job dependencies and execution order
 - Working with artifacts between jobs
 - Using GitHub context variables and expressions
+- Implementing security best practices (explicit permissions)
 
 ## 🔧 How to Use
 1. Fork this repository
