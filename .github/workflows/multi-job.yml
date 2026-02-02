@@ -9,6 +9,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read  # Read access for checkout
+  actions: read   # Read access for downloading artifacts
+
 jobs:
   build:
     name: Build Job

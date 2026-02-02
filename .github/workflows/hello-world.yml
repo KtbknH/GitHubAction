@@ -10,6 +10,9 @@ on:
     branches: [ main ]
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
+permissions:
+  contents: read  # Only needs read access to checkout code
+
 jobs:
   greet:
     runs-on: ubuntu-latest
