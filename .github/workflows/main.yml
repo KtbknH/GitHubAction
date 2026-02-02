@@ -4,13 +4,22 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8','3.9' ,'3.10']
 
     steps:
-     - name: Checkout du code
-       uses: actions/checkout@v4
-     - name: Installation de Python
-       uses: actions/setup-python@v4
-       with:
-         python-version: '3.10'
-     - name: Exécution du script Python
-       run: python main.py
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Installation de Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Exécution du script Python
+        run: python main.py
+      - name: Installation des despendances
+        run: pip install -r requirements.txt
+      - name: Exécution des tests
+        run: |
+          pytest
