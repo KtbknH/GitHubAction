@@ -1,11 +1,11 @@
 from fastapi.testclient import TestClient
-from app.main import app
+from application.main import app
 
 client = TestClient(app)
 
 def test_calculate_sqrt(mocker):
   mocker.patch(
-    "App.main.get_square",
+    "application.main.get_square",
     return_value= 16
   )
   result = 32 

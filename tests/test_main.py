@@ -1,6 +1,6 @@
 from urllib import response
 from fastapi.testclient import TestClient
-from app.main import app
+from application.main import app
 import pytest
 import math
 from random import randint
