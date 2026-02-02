@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout du code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Installation de Python
         uses: actions/setup-python@v4
@@ -25,3 +25,4 @@ jobs:
       - name: Exécution des tests
         run: |
           pytest
+          
