@@ -18,8 +18,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Exécution du script Python
         run: python main.py
-      - name: Installation des despendances
-        run: pip install -r requirements.txt
+      # - name: Installation des despendances
+      #   run: pip install -r requirements.txt
+      - name: Installation des dépendances
+        run: pip install fastapi locust pytest uvicorn coverage httpx pytest-mock pytest-profiling pylint sqlalchemy pydantic
       - name: Exécution des tests
         run: |
           pytest
