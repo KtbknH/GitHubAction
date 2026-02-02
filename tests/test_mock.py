@@ -6,7 +6,7 @@ client = TestClient(app)
 def test_calculate_sqrt(mocker):
   mocker.patch(
     "App.main.get_square",
-    return_value=16
+    return_value= 16
   )
   result = 32 
   response = client.get("/twice/4")
