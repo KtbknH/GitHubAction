@@ -1,0 +1,49 @@
+name: Hello World Workflow
+
+# This workflow demonstrates basic GitHub Actions concepts
+# It runs on push to main branch and on pull requests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
+
+permissions:
+  contents: read  # Only needs read access to checkout code
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Say Hello
+      run: |
+        echo "Hello, World! 🌍"
+        echo "This is a GitHub Actions workflow!"
+        
+    - name: Display system information
+      run: |
+        echo "Running on: $(uname -a)"
+        echo "Current user: $(whoami)"
+        echo "Current directory: $(pwd)"
+        
+    - name: Show repository info
+      run: |
+        echo "Repository: ${{ github.repository }}"
+        echo "Branch: ${{ github.ref }}"
+        echo "Event: ${{ github.event_name }}"
+        echo "Actor: ${{ github.actor }}"
+        
+    - name: Simple calculation
+      run: |
+        echo "Let's do some math:"
+        echo "2 + 2 = $((2 + 2))"
+        echo "10 * 5 = $((10 * 5))"
+        
+    - name: Success message
+      run: echo "✅ Workflow completed successfully!"
